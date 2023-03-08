@@ -21,7 +21,49 @@
       <div class="contact">
         <!--<h3>Email Us</h3>-->
         <div class="alert">"You will receive a message via SMS and email."</div>
-        <form id="kaverikitchens">
+
+<?php 
+
+if(isset($_POST['submit'])){
+        
+        
+// $config['smtp_host'] = 'smtp.gmail.com';
+// $config['smtp_user'] = 'ceo@jyothipowertech.in';
+// $config['smtp_pass'] = 'pr@veen24081995';
+// $config['smtp_port'] = 465;
+
+// $host = "ssl://smtpout.jyothipowertech.in";
+//$username = "ceo@jyothipowertech.in";
+// $password = "jyothipowertech@123";
+// $port = "465";
+    $to = "giridharyadav20000104@gmail.com"; // this is your Email address
+    //$from = "sudhini.sushma@gmail.com"; // this is the sender's Email address
+    $name = $_POST['name'];
+    $Date = $_POST['Date'];
+    $email = $_POST['email'];
+    $phone =$_POST['phone'];
+    $time =$_POST['time'];
+    $people =$_POST['people'];
+    $msg =$_POST['message'];
+   
+    $subject = "Booked a Table from customer ".$name;
+    
+    $message = "Name:".$_POST['name'] . "\n\n " . "Date :". $_POST['Date'].
+    "\n\n"."Email :" .$_POST['email'] ."\n\n" . "Phone :" .$_POST['phone']
+    ."\n\n" . "Time :" .$_POST['time']."\n\n" . "People :" .$_POST['people']
+    ."\n\n" . "Message :" .$_POST['message'];
+
+    $headers = "From:" . $email;
+ 
+    if(mail($to,$subject,$message,$headers))
+    {
+    echo '<script>alert("Mail Sent. Thank you '.$name.', We Will Contact You Shortly")</script>';
+    }
+  
+}
+
+ ?>
+        <form action="" method="POST" >
           <p>
             <label>Name</label>
             <input type="text" name="name" id="name" required>
@@ -51,7 +93,7 @@
             <textarea name="message" rows="5" id="message"></textarea>
           </p>
           <p class="full">
-            <button type="submit">Book a table</button>
+            <button type="submit" name="submit">Book a table</button>
           </p>
         </form>
       </div>
